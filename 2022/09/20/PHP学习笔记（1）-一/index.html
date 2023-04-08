@@ -16,21 +16,19 @@
   <meta name="author" content="bnles">
   <meta name="keywords" content="">
   
-    <meta name="description" content="xff： 很多HTTP代理会在HTTP协议头中添加X-Forwarded-For头，用来追踪请求的来源。 X-Forwarded-For的格式如下： X-Forwarded-For: client1, proxy1, proxy2  X-Forwarded-For包含多个IP地址，每个值通过逗号+空格分开，最左边（client1）是最原始客户端的IP地址，如果有多层代理，每一层代理会将连接它的客户">
-<meta property="og:type" content="article">
-<meta property="og:title" content="初涉2">
-<meta property="og:url" content="http://example.com/2022/11/22/%E5%88%9D%E6%B6%89/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记 一">
+<meta property="og:url" content="http://example.com/2022/09/20/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89-%E4%B8%80/index.html">
 <meta property="og:site_name" content="lay">
-<meta property="og:description" content="xff： 很多HTTP代理会在HTTP协议头中添加X-Forwarded-For头，用来追踪请求的来源。 X-Forwarded-For的格式如下： X-Forwarded-For: client1, proxy1, proxy2  X-Forwarded-For包含多个IP地址，每个值通过逗号+空格分开，最左边（client1）是最原始客户端的IP地址，如果有多层代理，每一层代理会将连接它的客户">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-21T16:03:44.000Z">
-<meta property="article:modified_time" content="2022-11-21T16:05:24.037Z">
+<meta property="article:published_time" content="2022-09-20T07:05:02.000Z">
+<meta property="article:modified_time" content="2023-04-08T12:57:36.773Z">
 <meta property="article:author" content="bnles">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>初涉2 - lay</title>
+  <title>学习笔记 一 - lay</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="初涉2"></span>
+            <span id="subtitle" data-typed-text="学习笔记 一"></span>
           
         </div>
 
@@ -207,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-22 00:03" pubdate>
-          2022年11月22日 凌晨
+        <time datetime="2022-09-20 15:05" pubdate>
+          2022年9月20日 下午
         </time>
       </span>
     
@@ -219,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          0 字
         
       </span>
     
@@ -230,7 +228,7 @@
         
         
         
-          9 分钟
+          1 分钟
         
       </span>
     
@@ -268,24 +266,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">初涉2</h1>
+            <h1 style="display: none">学习笔记 一</h1>
             
             
               <div class="markdown-body">
                 
-                <p>xff：</p>
-<p>很多HTTP代理会在HTTP协议头中添加X-Forwarded-For头，用来追踪请求的来源。</p>
-<p>X-Forwarded-For的格式如下：</p>
-<pre><code class="hljs">X-Forwarded-For: client1, proxy1, proxy2
-</code></pre>
-<p>X-Forwarded-For包含多个IP地址，每个值通过逗号+空格分开，最左边（client1）是最原始客户端的IP地址，如果有多层代理，每一层代理会将连接它的客户端IP追加在X-Forwarded-For右边。</p>
-<p>一般的客户端发送HTTP请求没有X-Forwarded-For头的，当请求到达第一个代理服务器时，代理服务器会加上X-Forwarded-For请求头，并将值设为客户端的IP地址（也就是最左边第一个值），后面如果还有多个代理，会依次将IP追加到X-Forwarded-For头最右边，最终请求到达Web应用服务器，应用通过获取X-Forwarded-For头取左边第一个IP即为客户端真实IP。</p>
-<p>但是如果客户端在发起请求时，请求头上带上一个伪造的X-Forwarded-For，由于后续每层代理只会追加而不会覆盖，那么最终到达应用服务器时，获取的左边第一个IP地址将会是客户端伪造的IP。伪造X-Forwarded-For头只需加上X-Forwarded-For头就可以<br>referer：</p>
-<p>HTTP 请求的头信息里面，Referer 是一个常见字段，提供访问来源的信息。这个字段是可选的。客户端发送请求的时候，自主决定是否加上该字段。<br>————————————————<br>版权声明：本文为CSDN博主「canoa丶」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45746283/article/details/127876705">https://blog.csdn.net/weixin_45746283/article/details/127876705</a></p>
-<pre><code class="hljs">《robots协议》
-</code></pre>
-<p>robots协议也称爬虫协议、爬虫规则等,是指网站可建立一个robots.txt文件来告诉搜索引擎哪些页面可以抓取,哪些页面不能抓取,而搜索引擎则通过读取robots.txt文件来识别这个页面是否允许被抓取。但是,这个robots协议不是防火墙,也没有强制执行力,搜索引擎完全可以忽视robots.txt文件去抓取网页的快照。 [5]  如果想单独定义搜索引擎的漫游器访问子目录时的行为，那么可以将自定的设置合并到根目录下的robots.txt，或者使用robots元数据（Metadata，又称元数据）。<br>robots协议并不是一个规范，而只是约定俗成的，所以并不能保证网站的隐私。</p>
-
+                
                 
               </div>
             
@@ -302,8 +288,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>初涉2</div>
-      <div>http://example.com/2022/11/22/初涉/</div>
+      <div>学习笔记 一</div>
+      <div>http://example.com/2022/09/20/PHP学习笔记（1）-一/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +301,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月22日</div>
+          <div>2022年9月20日</div>
         </div>
       
       
@@ -347,9 +333,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/25/page/" title="page">
+                      <a href="/2022/11/22/sql%E9%9D%B6%E5%9C%BA%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B3%A8%E5%85%A5%E5%A7%BF%E5%8A%BF%EF%BC%89/" title="sql">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">page</span>
+                        <span class="hidden-mobile">sql</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +343,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/" title="学习笔记 一">
-                        <span class="hidden-mobile">学习笔记 一</span>
+                      <a href="/2022/09/19/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

