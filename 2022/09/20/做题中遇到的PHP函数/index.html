@@ -16,13 +16,15 @@
   <meta name="author" content="bnles">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="遇见过的PHP函数 1.array_search() 函数 &amp;#123;array_search() 函数与 in_array() 一样，在数组中查找一个键值。如果找到了该值，匹配元素的键名会被返回。如果没找到，则返回 false。&amp;#125; array_search(value,array,strict) value	必需。规定需要搜素的键值。 array	必需。规定被搜索的数组。 stric">
+<meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记 一">
-<meta property="og:url" content="http://example.com/2022/09/20/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89-%E4%B8%80/index.html">
+<meta property="og:url" content="http://example.com/2022/09/20/%E5%81%9A%E9%A2%98%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84PHP%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="lay">
+<meta property="og:description" content="遇见过的PHP函数 1.array_search() 函数 &amp;#123;array_search() 函数与 in_array() 一样，在数组中查找一个键值。如果找到了该值，匹配元素的键名会被返回。如果没找到，则返回 false。&amp;#125; array_search(value,array,strict) value	必需。规定需要搜素的键值。 array	必需。规定被搜索的数组。 stric">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-20T07:05:02.000Z">
-<meta property="article:modified_time" content="2023-04-08T12:57:36.773Z">
+<meta property="article:modified_time" content="2023-04-24T12:38:47.119Z">
 <meta property="article:author" content="bnles">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -217,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.6k 字
         
       </span>
     
@@ -228,7 +230,7 @@
         
         
         
-          1 分钟
+          14 分钟
         
       </span>
     
@@ -271,7 +273,63 @@
             
               <div class="markdown-body">
                 
-                
+                <p>遇见过的PHP函数</p>
+<p>1.array_search() 函数</p>
+<pre><code class="hljs">&#123;array_search() 函数与 in_array() 一样，在数组中查找一个键值。如果找到了该值，匹配元素的键名会被返回。如果没找到，则返回 false。&#125;
+array_search(value,array,strict)
+value	必需。规定需要搜素的键值。
+array	必需。规定被搜索的数组。
+strict可选。如果该参数被设置为 TRUE，则函数在数组中搜索数据类型和值都一致的元素。
+
+可能的值： true
+        false - 默认
+         如果设置为 true，则在数组中检查给定值的类型，数字 5 和字符串 5 是不同的
+</code></pre>
+<p>2.PHP foreach 循环</p>
+<pre><code class="hljs">foreach 循环只适用于数组，并用于遍历数组中的每个键/值对。
+</code></pre>
+<p>语法：		foreach ($array as $value) {}<br>        或：foreach($age as $x &#x3D;&gt; $val)</p>
+<p>3.call_user_func_array和call_user_func函数   {调用回调函数，并把一个数组参数作为回调函数的参数}</p>
+<pre><code class="hljs">call_user_func — 把第一个参数作为回调函数调用
+call_user_func(callable $callback, mixed ...$args): mixed
+第一个参数 callback 是被调用的回调函数，其余参数是回调函数的参数。
+</code></pre>
+<p>4.var_dump()：用于输出变量的详细信息，包括值和类型等</p>
+<p>5.preg_match_all()：用于执行一个全局正则表达式匹配</p>
+<p>6.exec()函数基本用法：</p>
+<p>　　　　语法为 exec(string $command[,array &amp;$output[,int &amp;$return_var ]]); </p>
+<p>　　　　$command  为要执行得命令，为字符类型</p>
+<p>　　　　$output  为执行命令后输出的结果，为数组类型</p>
+<p>　　　　$return_var  为命令执行后的返回状态，为int类型</p>
+<p>　　　　理论上只需要一个参数$command即可</p>
+<p>7.empty() 函数</p>
+<pre><code class="hljs">  empty() 判断一个变量是否被认为是空的。当一个变量并不存在，或者它的值等同于 FALSE，那么它会被认为不存在。如果变量不存在的话，empty()	并不会产生警告。
+</code></pre>
+<p>8.file_get_contents() 和file_put_contents()函数</p>
+<pre><code class="hljs">PHP file_get_contents() 函数
+file_get_contents() 把整个文件读入一个字符串中。
+
+file_put_contents() 函数把一个字符串写入文件中
+</code></pre>
+<p>9.strstr() 函数</p>
+<pre><code class="hljs">strstr() 函数搜索字符串在另一字符串中的第一次出现。
+strstr(string&#123;被搜索&#125;,search,before_search)
+</code></pre>
+<p>10.str_replace() 函数以其他字符替换字符串中的一些字符（区分大小写）。</p>
+<p>11.strrev函数<br>    反转字符串(strrev(“123”)–&gt;321ord)</p>
+<p>12.ord()<br>    返回第一个字母的ASCII</p>
+<p>13.chr()<br>    从指定的ascii值返回字符</p>
+<p>14.str_rot13()<br>    一种编码解码函数<br>      对字符串执行 ROT13 转换,ROT13 编码简单地使用字母表中后面第 13 个字母替换当前字母，同时忽略非字母表中的字符。编码和解码都使用相同的函      	数，传递一个编码过的字符串作为参数，将得到原始字符串。</p>
+<ol start="15">
+<li>is_string() 函数<br>is_string() 函数用于检测变量是否是字符串。</li>
+</ol>
+<p>16.isset() 函数<br>    isset() 函数用于检测变量是否已设置并且非 NULL。</p>
+<p>17.eval() 函数把字符串按照 PHP 代码来计算。</p>
+<p>18.intval() 函数<br>    intval() 函数用于获取变量的整数值。<br>    intval() 函数通过使用指定的进制 base 转换（默认是十进制），返回变量 var 的 integer 数值。 intval() 不能用于 object，否则会产生   	E_NOTICE 错误并返回 1。</p>
+<ol start="19">
+<li>scandir() 函数<br>列出 （） 中的文件和目录。</li>
+</ol>
+
                 
               </div>
             
@@ -289,7 +347,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>学习笔记 一</div>
-      <div>http://example.com/2022/09/20/PHP学习笔记（1）-一/</div>
+      <div>http://example.com/2022/09/20/做题中遇到的PHP函数/</div>
     </div>
     <div class="license-meta">
       
